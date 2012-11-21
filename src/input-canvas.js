@@ -62,5 +62,23 @@ define(['canvas'], function(Canvas){
 
   InputCanvas.prototype = Object.create(Canvas.prototype);
 
+  InputCanvas.prototype.renderTinted = function(colour){
+    var tempCanvas = document.createElement('canvas');
+    var tempContext = tempCanvas.getContext('2d');
+
+    tempCanvas.width = this.canvas.width;
+    tempCanvas.height = this.canvas.height;
+
+    tempContext.drawImage(this.canvas, 0, 0);
+
+    tempContext.globalCompositeOperation = 'destination-atop';
+    tempContext.globalAlpha = 0.5;
+
+    tempContext.fillStyle = colour;
+    tempContext.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+
+    return tempCanvas;
+  };
+
   return InputCanvas;
 });

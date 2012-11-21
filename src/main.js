@@ -6,11 +6,17 @@
       var inputContainers = document.querySelectorAll('div.canvas-container.input');
       var outputContainer = document.querySelector('div.canvas-container.output');
       var controls = document.querySelectorAll('div.controls > ul > li');
+      var mainContainer = document.querySelector('div.main');
 
       var inputCanvases = [];
       var outputCanvas = new RenderCanvas(outputContainer, outputContainer.querySelector('canvas'));
 
       controls[0].classList.add('on');
+
+      //debugging
+      if(window.location.search.indexOf('debug') > -1){
+        mainContainer.classList.add('debug');
+      }
 
       Array.prototype.forEach.call(inputContainers, function(inputContainer, index){
         var inputCanvas = new InputCanvas(inputContainer, inputContainer.querySelector('canvas'), {

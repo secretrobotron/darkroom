@@ -16,6 +16,10 @@ div.main {
   top: 50px;
 }
 
+div.main.debug {
+  margin: 0 0;
+}
+
 div.canvas-container {
   width: 500px;
   height: 350px;
@@ -37,6 +41,18 @@ div.canvas-container.input canvas {
 
 div.canvas-container.output canvas {
   visibility: hidden;
+}
+
+div.main.debug div.canvas-container.output canvas {
+  visibility: visible;
+}
+
+div.main.debug div.canvas-container.output {
+  right: -600px;
+}
+
+div.canvas-container.output.top {
+  background: #000;
 }
 
 div.canvas-container.output.top canvas {

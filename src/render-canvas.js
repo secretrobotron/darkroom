@@ -15,8 +15,8 @@ define(['canvas'], function(Canvas){
   RenderCanvas.prototype.render = function(inputCanvases){
     var _canvas = this.canvas;
 
-    var canvas1 = inputCanvases[0].canvas;
-    var canvas2 = inputCanvases[1].canvas;
+    var canvas1 = inputCanvases[0].renderTinted('#FF00FF'); //magenta
+    var canvas2 = inputCanvases[1].renderTinted('#00FFFF'); //cyan
 
     var offsetX1 = inputCanvases[0].offsetX;
     var offsetX2 = inputCanvases[1].offsetX;
@@ -26,11 +26,15 @@ define(['canvas'], function(Canvas){
 
     var ctx = _canvas.getContext('2d');
     ctx.clearRect(0, 0, _canvas.width, _canvas.height);
+
+    ctx.globalAlpha = 1.0;
+
+    ctx.drawImage(inputCanvases[0].canvas, offsetX1, offsetY1);
+
     ctx.globalAlpha = 0.5;
-    
-    console.log(offsetX1, offsetY1);
-    //ctx.drawImage(canvas1, offsetX1, offsetY1);
-    //ctx.drawImage(canvas2, offsetX2, offsetY2);
+
+    ctx.drawImage(canvas1, offsetX1, offsetY1);
+    ctx.drawImage(canvas2, offsetX2, offsetY2);
   };
 
   return RenderCanvas;
