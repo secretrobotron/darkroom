@@ -1,26 +1,20 @@
-define([], function(){
+define(['canvas'], function(Canvas){
   
-  function InputCanvas(options){
+  function InputCanvas(container, canvas, options){
     options = options || {};
 
-    var _inputElement = this.inputElement = document.createElement('div');
-    var _canvas = this.canvas = document.createElement('canvas');
+    Canvas.call(this, container, canvas);
 
-    var _onAdjust = options.onAdjust || function(){};
-    var _onDrop = options.onDrop || function(){};
+    var _onChange = options.onChange || function(){};
     var _this = this;
 
-    _inputElement.appendChild(_canvas);
-
-    _inputElement.classList.add('input-canvas');
-
-    _inputElement.addEventListener('dragover', function(e){
+    this.canvas.addEventListener('dragover', function(e){
       e.preventDefault();
       e.dataTransfer.dropEffect = 'copy';
       return false;
     }, false);
 
-    _inputElement.addEventListener('drop', function(e){
+    this.canvas.addEventListener('drop', function(e){
       e.preventDefault();
       e.stopPropagation();
 
@@ -31,7 +25,7 @@ define([], function(){
         var img = new Image();
         img.onload = function(){
           var aspectRatio = img.height / img.width;
-          _canvas.getContext('2d').drawImage(img, 0, 0, _canvas.width, _canvas.height * aspectRatio);
+          _canvas.getContext('2d').drawImage(img, 0, 0, _this.canvas.width, _this.canvas.height * aspectRatio);
           _onDrop(_this);
         };
         img.src = reader.result;
@@ -39,7 +33,7 @@ define([], function(){
       reader.readAsDataURL(file);
     }, false);
 
-    _canvas.addEventListener('mousedown', function(e){
+    this.canvas.addEventListener('mousedown', function(e){
       var originalMousePosition = e.clientX;
       var originalCanvasPosition = _canvas.offsetLeft;
 
@@ -57,14 +51,9 @@ define([], function(){
       window.addEventListener('mouseup', onMouseUp, false);
     }, false);
 
-    Object.defineProperties(_this, {
-      offset: {
-        get: function(){
-          return _canvas.offsetLeft;
-        }
-      }
-    });
   }
+
+  InputCanvas.prototype = Object.create(Canvas.prototype);
 
   return InputCanvas;
 });

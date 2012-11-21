@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="lib/require.js" data-main="src/main.js"></script>
     <link rel="stylesheet" href="css/style.css">
+    <script src="lib/require.js" data-main="src/main.js"></script>
   </head>
   <body>
-    <div class="input-canvas-container"></div>
-    <div class="output-canvas-container"></div>
+    <div class="main">
+      <div class="canvas-container input"><canvas></canvas></div>
+      <div class="canvas-container input"><canvas></canvas></div>
+      <div class="canvas-container output"><canvas></canvas></div>
+      <div class="controls">
+        <ul>
+          <li><a>1</a></li>
+          <li><a>2</a></li>
+          <li><a>R</a></li>
+        </ul>
+      </div>
+    </div>
   </body>
 </html>
