@@ -22,11 +22,25 @@ div.canvas-container {
   position: absolute;
   box-shadow: inset 0px 0px 2px 2px #fff;
   z-index: 1;
+  overflow: hidden;
 }
 
 div.canvas-container canvas {
   width: 100%;
   height: 100%;
+  position: relative;
+}
+
+div.canvas-container.input canvas {
+  opacity: 0.5;
+}
+
+div.canvas-container.output canvas {
+  visibility: hidden;
+}
+
+div.canvas-container.output.top canvas {
+  visibility: visible;
 }
 
 div.canvas-container.top {
@@ -61,6 +75,10 @@ div.controls ul li {
   -o-transition: background-color 0.1s linear 0s;
   -ms-transition: background-color 0.1s linear 0s;
   transition: background-color 0.1s linear 0s;
+}
+
+div.controls ul li.on, div.controls ul li.on:hover {
+  background-color: rgba(200, 140, 10, 0.6);
 }
 
 div.controls ul li:hover {

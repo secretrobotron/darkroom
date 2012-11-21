@@ -6,6 +6,12 @@ define([], function(){
     var _container = container;
     var _canvas = canvas;
 
+    _canvas.addEventListener('dragover', function(e){
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'copy';
+      return false;
+    }, false);
+
     Object.defineProperties(_this, {
       canvas: {
         enumerable: true,
@@ -15,10 +21,16 @@ define([], function(){
         enumerable: true,
         value: _container
       },
-      offset: {
+      offsetX: {
         enumerable: true,
         get: function(){
           return _canvas.offsetLeft;
+        }
+      },
+      offsetY: {
+        enumerable: true,
+        get: function(){
+          return _canvas.offsetTop;
         }
       },
       focus: {
