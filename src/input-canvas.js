@@ -91,6 +91,12 @@ define(['canvas'], function(Canvas){
       return false;
     }, false);
 
+    this.getImageData = function(){
+      return _currentImage ? _currentImage.getContext('2d').getImageData(0, 0, _currentImage.width, _currentImage.height) : {data:[]};
+    };
+
+    this.offset = _offset;
+
   }
 
   return InputCanvas;
