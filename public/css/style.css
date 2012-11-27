@@ -45,6 +45,7 @@ div.main.debug {
   font-size: 80px;
   position: relative;
   top: 100px;
+  pointer-events: none;
 }
 
 .left-image.empty:before {
