@@ -35,17 +35,25 @@ div.main.debug {
 }
 
 
-.droppable .canvas-container {
+.canvas-container.active {
   text-align: center;
   border: 3px dashed #FFF;
+  background: #191919;
 }
 
-.left-image:before {
-  content: "1";
+.left-image.active:before,
+.right-image.active:before {
   height: 80px;
   font-size: 80px;
   position: relative;
-  top: 80px;
+  top: 100px;
+}
+
+.left-image.active:before {
+  content: "1";
+}
+.right-image.active:before {
+  content: "2";
 }
 
 div.canvas-container {
