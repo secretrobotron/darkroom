@@ -1,0 +1,23 @@
+{
+  "name": "darkroom",
+  "version": "0.0.1",
+  "description": "Create 3D anaglyphs in your browser",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/secretrobotron/darkroom.git"
+  },
+  "keywords": [
+    "3d",
+    "anaglyph"
+  ],
+  "contributors": [
+    "secretrobotron <secretrobotron@gmail.com>",
+    "Kate Hudson <katehudsondesign@gmail.com>",
+    "Jon Buckley <jon@jbuckley.ca>"
+  ],
+  "license": "BSD",
+  "dependencies": {
+    "knox": "~0.4.2",
+    "express": "~3.0.3"
+  }
+}
