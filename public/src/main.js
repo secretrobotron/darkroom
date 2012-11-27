@@ -9,6 +9,8 @@
       var controls = document.querySelectorAll('div.controls > ul > li');
       var mainContainer = document.querySelector('div.main');
 
+      var order = 0;
+
       controls[0].classList.add('on');
 
       //debugging
@@ -16,12 +18,15 @@
         mainContainer.classList.add('debug');
       }
 
-      function canvasChangeHandler(){
-        renderCanvas.render(inputCanvas1, inputCanvas2, inputCanvas1.offset[0], inputCanvas1.offset[1], inputCanvas2.offset[0], inputCanvas2.offset[1]);
+      function render(){
+        var canvas1 = order === 0 ? inputCanvas1 : inputCanvas2;
+        var canvas2 = order === 0 ? inputCanvas2 : inputCanvas1;
+        renderCanvas.render(canvas1, canvas2, canvas1.offset[0], canvas1.offset[1], canvas2.offset[0], canvas2.offset[1]);
+        console.log(order);
       }
 
-      var inputCanvas1 = new InputCanvas(inputContainers[0], 'red', { onChange: canvasChangeHandler });
-      var inputCanvas2 = new InputCanvas(inputContainers[1], 'blue', { onChange: canvasChangeHandler });
+      var inputCanvas1 = new InputCanvas(inputContainers[0], 'red', { onChange: render });
+      var inputCanvas2 = new InputCanvas(inputContainers[1], 'blue', { onChange: render });
       var renderCanvas = new RenderCanvas(outputCanvas);
 
       Array.prototype.forEach.call(inputContainers, function(inputContainer, index){
@@ -34,6 +39,19 @@
           controls[2].classList.remove('on');
         }, false);
       });
+
+      controls[2].addEventListener('click', function(e){
+        order = (order + 1) % 2;
+        if(order === 0){
+          inputCanvas1.colour = 'red';
+          inputCanvas2.colour = 'blue';
+        }
+        else {
+          inputCanvas1.colour = 'blue';
+          inputCanvas2.colour = 'red';
+        }
+        render();
+      }, false);
 
     }
 
