@@ -5,33 +5,36 @@ define([], function(){
 
     var _onChange = options.onChange || function(){};
     var _renderCanvas = document.createElement('canvas');
+    var _sourceImage;
     var _container = container;
     var _colour = colour;
     var _this = this;
     var _offset = [0, 0];
 
-    function render(image){
+    function render(){
       var tempContext = _renderCanvas.getContext('2d');
 
-      _renderCanvas.width = image.width;
-      _renderCanvas.height = image.height;
+      if(_sourceImage){
+        _renderCanvas.width = _sourceImage.width;
+        _renderCanvas.height = _sourceImage.height;
 
-      tempContext.drawImage(image, 0, 0);
+        tempContext.drawImage(_sourceImage, 0, 0);
 
-      var imageData = tempContext.getImageData(0, 0, _renderCanvas.width, _renderCanvas.height);
-      var pixels = imageData.data;
-      var i, l;
-      if(_colour === 'red'){
-        for(i = 0, l = pixels.length; i < l; i+=4){
-          pixels[i+1] = pixels[i+2] = 0;
+        var imageData = tempContext.getImageData(0, 0, _renderCanvas.width, _renderCanvas.height);
+        var pixels = imageData.data;
+        var i, l;
+        if(_colour === 'red'){
+          for(i = 0, l = pixels.length; i < l; i+=4){
+            pixels[i+1] = pixels[i+2] = 0;
+          }
         }
-      }
-      else {
-        for(i = 0, l = pixels.length; i < l; i+=4){
-          pixels[i] = 0;
+        else {
+          for(i = 0, l = pixels.length; i < l; i+=4){
+            pixels[i] = 0;
+          }
         }
+        tempContext.putImageData(imageData, 0, 0);
       }
-      tempContext.putImageData(imageData, 0, 0);
     }
 
     _container.addEventListener('dragover', function(e){
@@ -54,7 +57,7 @@ define([], function(){
           _container.innerHTML = '';
 
           _sourceImage = img;
-          render(img);
+          render();
           _onChange();
         };
 
