@@ -1,11 +1,6 @@
 define([], function(){
   
   function RenderCanvas(outputCanvas){
-    outputCanvas.addEventListener('drop', function(e){
-      e.preventDefault();
-      e.stopPropagation();
-      return false;
-    }, false);
 
     this.render = function(canvas1, canvas2, offsetX1, offsetY1, offsetX2, offsetY2){
       var ctx = outputCanvas.getContext('2d');
