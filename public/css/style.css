@@ -48,10 +48,10 @@ div.main.debug {
   top: 100px;
 }
 
-.left-image.on:before {
+.left-image.top:before {
   content: "1";
 }
-.right-image.on:before {
+.right-image.top:before {
   content: "2";
 }
 
