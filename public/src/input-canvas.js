@@ -43,7 +43,7 @@ define([], function(){
       return false;
     }, false);
 
-    _container.addEventListener('drop', function(e){
+   _container.addEventListener('drop', function(e){
       e.preventDefault();
       e.stopPropagation();
 
@@ -64,8 +64,6 @@ define([], function(){
         img.src = reader.result;
       };
       reader.readAsDataURL(file);
-
-      _container.classList.remove("active");
 
       return false;
     }, false);

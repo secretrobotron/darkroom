@@ -6,12 +6,10 @@
       var inputContainers = document.querySelectorAll('div.canvas-container.input');
       var outputContainer = document.querySelector('div.canvas-container.output');
       var outputCanvas = outputContainer.querySelector('canvas');
-      var controls = document.querySelectorAll('div.controls > ul > li');
+      var reverse = document.querySelector('reverse');
       var mainContainer = document.querySelector('div.main');
 
       var order = 0;
-
-      controls[0].classList.add('on');
 
       //debugging
       if(window.location.search.indexOf('debug') > -1){
@@ -30,17 +28,14 @@
       var renderCanvas = new RenderCanvas(outputCanvas);
 
       Array.prototype.forEach.call(inputContainers, function(inputContainer, index){
-        controls[index].addEventListener('click', function(e){
+        inputContainer.addEventListener('drop', function(e){
           e.preventDefault();
-          inputContainers[index].classList.add('top');
-          inputContainers[(index + 1) % 2].classList.remove('top');
-          controls[index].classList.add('on');
-          controls[(index + 1) % 2].classList.remove('on');
-          controls[2].classList.remove('on');
+          inputContainers[index].classList.remove('top');
+          inputContainers[(index + 1) % 2].classList.add('top');
         }, false);
       });
 
-      controls[2].addEventListener('click', function(e){
+      reverse.addEventListener('click', function(e){
         order = (order + 1) % 2;
         if(order === 0){
           inputCanvas1.colour = 'red';
