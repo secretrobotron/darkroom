@@ -11,7 +11,6 @@ define([], function(){
     var _offset = [0, 0];
 
     function render(image){
-      console.log('render');
       var tempContext = _renderCanvas.getContext('2d');
 
       _renderCanvas.width = image.width;
