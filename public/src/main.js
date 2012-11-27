@@ -52,27 +52,27 @@
         render();
       }, false);
 
-      document.addEventListener('drop', function(e){
-        e.preventDefault();
-        e.stopPropagation();
-        return false;
-      }, false);
-
-      document.addEventListener('dragover', function(e){
-        e.preventDefault();
-        e.stopPropagation();
-        e.dataTransfer.dropEffect = 'copy';
-        return false;
-      }, false);
-
     }
 
     if(document.readyState === 'complete'){
       start();
     }
     else {
-      document.addEventListener('DOMContentLoaded', start, false);  
+      document.onreadystatechange = start;
     }
+
+    document.addEventListener('drop', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    }, false);
+
+    document.addEventListener('dragover', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      e.dataTransfer.dropEffect = 'copy';
+      return false;
+    }, false);
 
   });
 
