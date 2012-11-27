@@ -1,41 +1,30 @@
-define(['canvas'], function(Canvas){
+define([], function(){
   
-  function RenderCanvas(container, canvas){
-    this.canvas = canvas;
-    
-    this.canvas.addEventListener('drop', function(e){
+  function RenderCanvas(outputCanvas){
+    outputCanvas.addEventListener('drop', function(e){
       e.preventDefault();
       e.stopPropagation();
       return false;
     }, false);
+
+    this.render = function(canvas1, canvas2, offsetX1, offsetY1, offsetX2, offsetY2){
+      var ctx = outputCanvas.getContext('2d');
+
+      outputCanvas.width = canvas1.width;
+      outputCanvas.height = canvas1.height;
+
+      var imageData1 = canvas1.getImageData();
+      var imageData2 = canvas2.getImageData();
+
+      ctx.clearRect(0, 0, outputCanvas.width, outputCanvas.height);
+
+      // Composite!
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.drawImage(canvas1.canvas, offsetX1, offsetY1);
+      ctx.globalCompositeOperation = 'lighter';
+      ctx.drawImage(canvas2.canvas, offsetX2, offsetY2);
+    };
   }
-
-  RenderCanvas.prototype = Object.create(Canvas.prototype);
-
-  RenderCanvas.prototype.render = function(inputCanvases){
-    var _canvas = this.canvas;
-
-    var canvas1 = inputCanvases[0].renderTinted('#FF0000'); //R
-    var canvas2 = inputCanvases[1].renderTinted('#00FFFF'); //GB
-
-    var offsetX1 = inputCanvases[0].offsetX;
-    var offsetX2 = inputCanvases[1].offsetX;
-
-    var offsetY1 = inputCanvases[0].offsetY;
-    var offsetY2 = inputCanvases[1].offsetY;
-
-    var ctx = _canvas.getContext('2d');
-    ctx.clearRect(0, 0, _canvas.width, _canvas.height);
-
-    ctx.globalAlpha = 1.0;
-
-    ctx.drawImage(inputCanvases[0].canvas, offsetX1, offsetY1);
-
-    ctx.globalAlpha = 0.5;
-
-    ctx.drawImage(canvas1, offsetX1, offsetY1);
-    ctx.drawImage(canvas2, offsetX2, offsetY2);
-  };
 
   return RenderCanvas;
 

@@ -36,11 +36,7 @@ div.canvas-container canvas {
 }
 
 div.canvas-container.input canvas {
-  opacity: 0.5;
-}
-
-div.canvas-container.output canvas {
-  visibility: hidden;
+  opacity: 0;
 }
 
 div.main.debug div.canvas-container.output canvas {
