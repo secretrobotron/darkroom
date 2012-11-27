@@ -1,8 +1,8 @@
 define(['canvas'], function(Canvas){
   
   function RenderCanvas(container, canvas){
-    Canvas.call(this, container, canvas);
-
+    this.canvas = canvas;
+    
     this.canvas.addEventListener('drop', function(e){
       e.preventDefault();
       e.stopPropagation();
@@ -15,8 +15,8 @@ define(['canvas'], function(Canvas){
   RenderCanvas.prototype.render = function(inputCanvases){
     var _canvas = this.canvas;
 
-    var canvas1 = inputCanvases[0].renderTinted('#FF00FF'); //magenta
-    var canvas2 = inputCanvases[1].renderTinted('#00FFFF'); //cyan
+    var canvas1 = inputCanvases[0].renderTinted('#FF0000'); //R
+    var canvas2 = inputCanvases[1].renderTinted('#00FFFF'); //GB
 
     var offsetX1 = inputCanvases[0].offsetX;
     var offsetX2 = inputCanvases[1].offsetX;

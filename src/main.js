@@ -21,7 +21,7 @@
       Array.prototype.forEach.call(inputContainers, function(inputContainer, index){
         var inputCanvas = new InputCanvas(inputContainer, inputContainer.querySelector('canvas'), {
           onChange: function(){
-            outputCanvas.render(inputCanvases);
+            //outputCanvas.render(inputCanvases);
           },
           onDrop: function(){
           }

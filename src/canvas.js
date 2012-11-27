@@ -4,17 +4,8 @@ define([], function(){
     var _this = this;
 
     var _container = container;
-    var _canvas = canvas;
 
     var containerRect = container.getBoundingClientRect();
-    _canvas.width = Math.round(containerRect.width);
-    _canvas.height = Math.round(containerRect.height);
-
-    _canvas.addEventListener('dragover', function(e){
-      e.preventDefault();
-      e.dataTransfer.dropEffect = 'copy';
-      return false;
-    }, false);
 
     Object.defineProperties(_this, {
       canvas: {
