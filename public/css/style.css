@@ -40,18 +40,18 @@ div.main.debug {
   border: 3px dashed #FFF;
 }
 
-.left-image.top:before,
-.right-image.top:before {
+.left-image.empty:before,
+.right-image.empty:before {
   height: 80px;
   font-size: 80px;
   position: relative;
   top: 100px;
 }
 
-.left-image.top:before {
+.left-image.empty:before {
   content: "1";
 }
-.right-image.top:before {
+.right-image.empty:before {
   content: "2";
 }
 

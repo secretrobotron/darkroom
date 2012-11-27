@@ -6,7 +6,7 @@
       var inputContainers = document.querySelectorAll('div.canvas-container.input');
       var outputContainer = document.querySelector('div.canvas-container.output');
       var outputCanvas = outputContainer.querySelector('canvas');
-      var reverse = document.querySelector('reverse');
+      var reverse = document.querySelector('.reverse');
       var mainContainer = document.querySelector('div.main');
 
       var order = 0;
@@ -27,13 +27,18 @@
       var inputCanvas2 = new InputCanvas(inputContainers[1], 'blue', { onChange: render });
       var renderCanvas = new RenderCanvas(outputCanvas);
 
-      Array.prototype.forEach.call(inputContainers, function(inputContainer, index){
-        inputContainer.addEventListener('drop', function(e){
-          e.preventDefault();
-          inputContainers[index].classList.remove('top');
-          inputContainers[(index + 1) % 2].classList.add('top');
-        }, false);
-      });
+     inputContainers[0].addEventListener('drop', function(e){
+      inputContainers[0].classList.remove('top');
+      inputContainers[0].classList.remove('empty');
+      inputContainers[1].classList.add('top');
+      inputContainers[1].classList.add('empty');
+     }, false);
+
+     inputContainers[1].addEventListener('drop', function(e){
+      inputContainers[0].classList.add('top');
+      inputContainers[1].classList.remove('top');
+      inputContainers[1].classList.remove('empty');
+     }, false);
 
       reverse.addEventListener('click', function(e){
         order = (order + 1) % 2;
