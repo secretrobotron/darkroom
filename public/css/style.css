@@ -1,11 +1,16 @@
 html, body {
   padding: 0;
   margin: 0;
-  background: #000;
+  background: #191919;
   color: #fff;
-  font-family: helvetica;
+  font-family: brandon-grotesque, helvetica;
   font-weight: bold;
   font-size: 18pt;
+}
+
+h1, h2, h3 {
+  font-weight: normal;
+  line-height: 1.1;
 }
 
 div.main {
@@ -20,11 +25,33 @@ div.main.debug {
   margin: 0 0;
 }
 
+.how-to {
+  float: left;
+  margin-right: 20px;
+}
+
+.stage {
+  position: relative;
+}
+
+
+.droppable .canvas-container {
+  text-align: center;
+  border: 3px dashed #FFF;
+}
+
+.left-image:before {
+  content: "1";
+  height: 80px;
+  font-size: 80px;
+  position: relative;
+  top: 80px;
+}
+
 div.canvas-container {
   width: 500px;
   height: 350px;
   position: absolute;
-  box-shadow: inset 0px 0px 2px 2px #fff;
   z-index: 1;
   overflow: hidden;
 }
@@ -50,6 +77,7 @@ div.main.debug div.canvas-container.output {
 div.canvas-container.output.top {
   background: #000;
 }
+
 
 div.canvas-container.output.top canvas {
   visibility: visible;
