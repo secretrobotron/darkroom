@@ -35,24 +35,24 @@ div.main.debug {
 }
 
 
-.canvas-container.active {
+.canvas-container.top {
   text-align: center;
   border: 3px dashed #FFF;
   background: #191919;
 }
 
-.left-image.active:before,
-.right-image.active:before {
+.left-image.top:before,
+.right-image.top:before {
   height: 80px;
   font-size: 80px;
   position: relative;
   top: 100px;
 }
 
-.left-image.active:before {
+.left-image.on:before {
   content: "1";
 }
-.right-image.active:before {
+.right-image.on:before {
   content: "2";
 }
 
