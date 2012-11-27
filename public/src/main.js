@@ -20,7 +20,6 @@
         var canvas1 = order === 0 ? inputCanvas1 : inputCanvas2;
         var canvas2 = order === 0 ? inputCanvas2 : inputCanvas1;
         renderCanvas.render(canvas1, canvas2, canvas1.offset[0], canvas1.offset[1], canvas2.offset[0], canvas2.offset[1]);
-        console.log(order);
       }
 
       var inputCanvas1 = new InputCanvas(inputContainers[0], 'red', { onChange: render });
