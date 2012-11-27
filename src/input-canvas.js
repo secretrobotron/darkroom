@@ -50,13 +50,11 @@ define([], function(){
       reader.onload = function(e){
         var img = new Image();
         img.onload = function(){
+          _offset = [0, 0];
           _container.innerHTML = '';
 
           _sourceImage = img;
-          _renderCanvas = document.createElement('canvas');
           render(img);
-          _container.appendChild(_renderCanvas);
-
           _onChange();
         };
 
@@ -72,14 +70,12 @@ define([], function(){
 
       var originalMousePositionX = e.clientX;
       var originalMousePositionY = e.clientY;
-      var originalCanvasPositionX = _renderCanvas.offsetLeft;
-      var originalCanvasPositionY = _renderCanvas.offsetTop;
+      var originalOffset = _offset.slice();
 
       function onMouseMove(e){
         e.preventDefault();
-        _renderCanvas.style.left = originalCanvasPositionX - originalMousePositionX + e.clientX + 'px';
-        _renderCanvas.style.top = originalCanvasPositionY - originalMousePositionY + e.clientY + 'px';
-        _offset = [_renderCanvas.offsetLeft, _renderCanvas.offsetTop];
+        _offset[0] = originalOffset[0] - originalMousePositionX + e.clientX;
+        _offset[1] = originalOffset[1] - originalMousePositionY + e.clientY;
         _onChange();
       }
 
@@ -91,10 +87,6 @@ define([], function(){
       window.addEventListener('mousemove', onMouseMove, false);
       window.addEventListener('mouseup', onMouseUp, false);
     }, false);
-
-    this.getImageData = function(){
-      return _renderCanvas ? _renderCanvas.getContext('2d').getImageData(0, 0, _renderCanvas.width, _renderCanvas.height) : {data:[]};
-    };
 
     Object.defineProperties(this, {
       canvas: {

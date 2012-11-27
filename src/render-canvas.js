@@ -13,9 +13,6 @@ define([], function(){
       outputCanvas.width = canvas1.width;
       outputCanvas.height = canvas1.height;
 
-      var imageData1 = canvas1.getImageData();
-      var imageData2 = canvas2.getImageData();
-
       ctx.clearRect(0, 0, outputCanvas.width, outputCanvas.height);
 
       // Composite!
