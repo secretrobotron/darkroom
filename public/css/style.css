@@ -34,7 +34,6 @@ div.main.debug {
   position: relative;
 }
 
-
 .canvas-container.top {
   text-align: center;
   border: 3px dashed #FFF;
@@ -49,10 +48,10 @@ div.main.debug {
 }
 
 .left-image.empty:before {
-  content: "1";
+  content: "Drop Image 1";
 }
 .right-image.empty:before {
-  content: "2";
+  content: "Drop Image 2";
 }
 
 div.canvas-container {
@@ -96,10 +95,10 @@ div.canvas-container.top {
 
 div.controls {
   position: absolute;
-  right: 0;
+  right: -5px;
   width: 50px;
   bottom: 0;
-  top: 0;
+  top: 20px;
   background: rgba(30, 30, 30, 0.8);
 }
 
@@ -117,21 +116,36 @@ div.controls ul li {
   text-align: center;
   background-color: rgba(80, 80, 80, 0.0);
   cursor: pointer;
-  -webkit-transition: background-color 0.1s linear 0s;
-  -moz-transition: background-color 0.1s linear 0s;
-  -o-transition: background-color 0.1s linear 0s;
-  -ms-transition: background-color 0.1s linear 0s;
-  transition: background-color 0.1s linear 0s;
+  -webkit-transition: opacity 0.1s linear 0s;
+  -moz-transition: opacity 0.1s linear 0s;
+  -o-transition: opacity 0.1s linear 0s;
+  -ms-transition: opacity 0.1s linear 0s;
+  transition: opacity 0.1s linear 0s;
 }
 
-div.controls ul li.on, div.controls ul li.on:hover {
-  background-color: rgba(200, 140, 10, 0.6);
+.reverse {
+  position:relative;
 }
 
-div.controls ul li:hover {
-  background-color: rgba(80, 80, 80, 0.6);
+.reverse:after,
+.reverse:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  display: block;
+  height: 30px;
+  width: 30px;
+  border-radius: 30px;
+  opacity: 0.5;
 }
-
-div.controls ul li a {
-  text-decoration: none;
+.reverse:before {
+  background: #D8250C;
+  left: 0;
+}
+.reverse:after {
+  left: 6px;
+  background: #5f87f8;
+}
+.reverse:hover:before {
+  z-index: 1;
 }
