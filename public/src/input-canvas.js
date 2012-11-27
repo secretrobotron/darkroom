@@ -65,6 +65,8 @@ define([], function(){
       };
       reader.readAsDataURL(file);
 
+      _container.classList.remove("active");
+
       return false;
     }, false);
 
