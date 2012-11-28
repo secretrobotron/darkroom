@@ -9,6 +9,7 @@
       var outputContainer = document.querySelector('div.canvas-container.output');
       var outputCanvas = outputContainer.querySelector('canvas');
       var reverseButton = document.querySelector('.reverse');
+      var saveButton = document.querySelector('.save');
       var mainContainer = document.querySelector('div.main');
       var currentInputCanvas;
       var afterDropFunction;
@@ -69,6 +70,20 @@
 
         reader.readAsDataURL(file);        
       };
+
+      saveButton.addEventListener('click', function(e){
+        var xhr = new XMLHttpRequest();
+        var canvasDataURI = outputCanvas.toDataURL('image/jpeg');
+
+        xhr.open('POST', '/save', true);
+        xhr.onreadystatechange = function(e){
+          if(e.target.readyState === 4){
+            console.log(e.target.response);  
+          }
+        };
+        xhr.setRequestHeader('Content-Type', 'image/jpeg');
+        xhr.send(canvasDataURI);
+      }, false);
 
     }
 
