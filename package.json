@@ -18,6 +18,7 @@
   "license": "BSD",
   "dependencies": {
     "knox": "~0.4.2",
-    "express": "~3.0.3"
+    "express": "~3.0.3",
+    "config": "0.4.*"
   }
 }
