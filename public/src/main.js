@@ -30,12 +30,16 @@
         inputContainers[1].classList.add('empty');
         currentInputCanvas = inputCanvas2;
         afterDropFunction = afterDrop2;
+        inputCanvas1.deactivateMouseControls();
+        inputCanvas2.activateMouseControls();
       }
 
       function afterDrop2(){
+        inputContainers[1].classList.remove('empty');
       }
 
       afterDropFunction = afterDrop1;
+      inputCanvas1.activateMouseControls();
 
       reverseButton.addEventListener('click', function(e){
         if(inputCanvas1.colour === 'blue'){

@@ -16,6 +16,10 @@ define([], function(){
       ctx.globalCompositeOperation = 'lighter';
       ctx.drawImage(canvas2.canvas, offsetX2, offsetY2);
     };
+
+    this.fitInside = function(){
+
+    };
   }
 
   return RenderCanvas;

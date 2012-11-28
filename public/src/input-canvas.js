@@ -45,7 +45,7 @@ define([], function(){
       _onChange();
     };
 
-    _container.addEventListener('mousedown', function(e){
+    function onMouseDown(e){
       e.preventDefault();
 
       var originalMousePositionX = e.clientX;
@@ -66,7 +66,17 @@ define([], function(){
 
       window.addEventListener('mousemove', onMouseMove, false);
       window.addEventListener('mouseup', onMouseUp, false);
-    }, false);
+    }
+
+    this.activateMouseControls = function(mouseTarget){
+      mouseTarget = mouseTarget || window;
+      mouseTarget.addEventListener('mousedown', onMouseDown, false);
+    };
+
+    this.deactivateMouseControls = function(mouseTarget){
+      mouseTarget = mouseTarget || window;
+      mouseTarget.removeEventListener('mousedown', onMouseDown, false);
+    };
 
     Object.defineProperties(this, {
       canvas: {
