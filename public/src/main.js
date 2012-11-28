@@ -2,46 +2,43 @@
   
   require(['input-canvas', 'render-canvas'], function(InputCanvas, RenderCanvas){
 
+    var dropFunction = function(){};
+
     function start(){
       var inputContainers = document.querySelectorAll('div.canvas-container.input');
       var outputContainer = document.querySelector('div.canvas-container.output');
       var outputCanvas = outputContainer.querySelector('canvas');
-      var reverse = document.querySelector('.reverse');
+      var reverseButton = document.querySelector('.reverse');
       var mainContainer = document.querySelector('div.main');
-
-      var order = 0;
-
-      //debugging
-      if(window.location.search.indexOf('debug') > -1){
-        mainContainer.classList.add('debug');
-      }
+      var currentInputCanvas;
+      var afterDropFunction;
 
       function render(){
-        var canvas1 = order === 0 ? inputCanvas1 : inputCanvas2;
-        var canvas2 = order === 0 ? inputCanvas2 : inputCanvas1;
-        renderCanvas.render(canvas1, canvas2, canvas1.offset[0], canvas1.offset[1], canvas2.offset[0], canvas2.offset[1]);
+        renderCanvas.render(inputCanvas1, inputCanvas2, inputCanvas1.offset[0], inputCanvas1.offset[1], inputCanvas2.offset[0], inputCanvas2.offset[1]);
       }
 
       var inputCanvas1 = new InputCanvas(inputContainers[0], 'red', { onChange: render });
       var inputCanvas2 = new InputCanvas(inputContainers[1], 'blue', { onChange: render });
       var renderCanvas = new RenderCanvas(outputCanvas);
 
-      inputContainers[0].addEventListener('drop', function(e){
-       inputContainers[0].classList.remove('top');
-       inputContainers[0].classList.remove('empty');
-       inputContainers[1].classList.add('top');
-       inputContainers[1].classList.add('empty');
-      }, false);
+      currentInputCanvas = inputCanvas1;
 
-      inputContainers[1].addEventListener('drop', function(e){
-       inputContainers[0].classList.add('top');
-       inputContainers[1].classList.remove('top');
-       inputContainers[1].classList.remove('empty');
-      }, false);
+      function afterDrop1(){
+        inputContainers[0].classList.remove('top');
+        inputContainers[0].classList.remove('empty');
+        inputContainers[1].classList.add('top');
+        inputContainers[1].classList.add('empty');
+        currentInputCanvas = inputCanvas2;
+        afterDropFunction = afterDrop2;
+      }
 
-      reverse.addEventListener('click', function(e){
-        order = (order + 1) % 2;
-        if(order === 0){
+      function afterDrop2(){
+      }
+
+      afterDropFunction = afterDrop1;
+
+      reverseButton.addEventListener('click', function(e){
+        if(inputCanvas1.colour === 'blue'){
           inputCanvas1.colour = 'red';
           inputCanvas2.colour = 'blue';
         }
@@ -51,6 +48,23 @@
         }
         render();
       }, false);
+
+      dropFunction = function(e){
+        var file = e.dataTransfer.files[0];
+
+        var reader = new FileReader();
+        reader.onload = function(e){
+          var img = new Image();
+          img.onload = function(){
+            currentInputCanvas.setImage(img);
+            afterDropFunction();
+          };
+
+          img.src = reader.result;
+        };
+
+        reader.readAsDataURL(file);        
+      };
 
     }
 
@@ -64,6 +78,7 @@
     document.addEventListener('drop', function(e){
       e.preventDefault();
       e.stopPropagation();
+      dropFunction(e);
       return false;
     }, false);
 

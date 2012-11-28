@@ -37,36 +37,13 @@ define([], function(){
       }
     }
 
-    _container.addEventListener('dragover', function(e){
-      e.preventDefault();
-      e.dataTransfer.dropEffect = 'copy';
-      return false;
-    }, false);
-
-   _container.addEventListener('drop', function(e){
-      e.preventDefault();
-      e.stopPropagation();
-
-      var file = e.dataTransfer.files[0];
-
-      var reader = new FileReader();
-      reader.onload = function(e){
-        var img = new Image();
-        img.onload = function(){
-          _offset = [0, 0];
-          _container.innerHTML = '';
-
-          _sourceImage = img;
-          render();
-          _onChange();
-        };
-
-        img.src = reader.result;
-      };
-      reader.readAsDataURL(file);
-
-      return false;
-    }, false);
+    this.setImage = function(image){
+      _offset = [0, 0];
+      _container.innerHTML = '';
+      _sourceImage = image;
+      render();
+      _onChange();
+    };
 
     _container.addEventListener('mousedown', function(e){
       e.preventDefault();
@@ -95,16 +72,6 @@ define([], function(){
       canvas: {
         get: function(){
           return _renderCanvas;
-        }
-      },
-      width: {
-        get: function(){
-          return _renderCanvas.width;
-        }
-      },
-      height: {
-        get: function(){
-          return _renderCanvas.height;
         }
       },
       offset: {
