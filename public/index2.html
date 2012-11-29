@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="lib/require.js" data-main="src/main.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="main">
+        <div class="canvases">
+          <div class="canvas-container input top left-image empty"></div>
+          <div class="canvas-container input right-image"></div>
+          <div class="canvas-container output"><canvas></canvas></div>
+        </div>
+        <fieldset>
+          <input class="see-through file-input" type="file" accept="image/*">
+          <div class="cover">
+            <span class="progress"></span>
+          </div>
+        </fieldset>
+        <a class="reverse"></a>
+      </div>
+      <footer>
+        <div class="instructions">
+          Take a picture, holding your camera steady.
+        </div>
+        <ul class="tools">
+          <li class="photos"><a></a></li>
+          <li class="move disabled"><a></a></li>
+          <li class="export save disabled"><a></a></li>
+        </ul>
+      </footer>
+    </div>
+    <script type="text/javascript" src="//use.typekit.net/qng7ttt.js"></script>
+    <script type="text/javascript">
+      try{Typekit.load();}catch(e){}
+      document.addEventListener("DOMContentLoaded", function(){
+        window.scrollTo(0, 1);
+      }, false );
+    </script>
+  </body>
+</html>

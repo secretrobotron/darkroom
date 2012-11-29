@@ -1,0 +1,150 @@
+/*********************************************************
+* Globals
+*/
+/*********************************************************
+* Main
+*/
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 460px;
+  overflow-y: hidden;
+  background: #FFF;
+  color: #555;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+}
+.main {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  bottom: 50px;
+}
+/*********************************************************
+* Canvases
+*/
+.canvases {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.canvas-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+}
+.canvas-container canvas {
+  /* Omit width to exploit automatic size adjustment wrt aspect ratio. */
+
+  /*width: 100%;*/
+
+  height: 100%;
+  position: relative;
+}
+/*********************************************************
+* Footer
+*/
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.tools {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  height: 50px;
+  background-color: #e73547;
+  border-top: 1px solid #d91a2d;
+}
+.tools > li {
+  float: left;
+  height: 100%;
+  width: 50px;
+  border-right: 1px solid #d91a2d;
+}
+.tools > li.disabled {
+  opacity: 0.2;
+}
+.tools > li.disabled > a:hover {
+  background-color: #e73547;
+}
+.tools > li > a {
+  display: block;
+  height: 100%;
+  background-repeat: no-repeat;
+}
+.tools > li > a:hover {
+  background-color: #ea4c5c;
+}
+.photos a {
+  background-image: url('../img/camera.png');
+}
+.move a {
+  background-image: url('../img/overlay.png');
+}
+.export a {
+  background-image: url('../img/glasses.png');
+}
+fieldset {
+  display: block;
+  position: relative;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+.see-through {
+  position: absolute;
+  visibility: hidden;
+}
+.cover {
+  display: block;
+  height: 100%;
+  width: 100%;
+  display: table;
+  text-align: center;
+}
+.progress {
+  display: table-cell;
+  height: 100%;
+  width: 100%;
+  vertical-align: middle;
+}
+.progress:before,
+.progress:after {
+  display: inline-block;
+  font-size: 5em;
+  width: 1.8em;
+  height: 1.8em;
+  line-height: 1.8;
+  border-radius: 1.8em;
+  text-align: center;
+  background: #f7f8f8;
+  color: #c1c8c8;
+}
+.progress:before {
+  content: "1";
+  margin-right: 0.2em;
+}
+.progress.dropped-1:before {
+  background: #e73547;
+  color: #f2909a;
+}
+.progress:after {
+  content: "2";
+}
+.progress.dropped-2:after {
+  background: #6cb4f9;
+  color: #cee6fd;
+}
+.instructions {
+  padding: 1em;
+  text-align: center;
+  line-height: 1.1;
+  background-color: #f7f8f8;
+  border-top: 1px solid #dce0e0;
+  color: #a5b1b1;
+}

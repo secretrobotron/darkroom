@@ -1,0 +1,178 @@
+/*********************************************************
+* Globals
+*/
+@lightgrey: #F7F8F8;
+@red: #E73547;
+@blue: #6CB4F9;
+@finger: 50px;
+
+/*********************************************************
+* Main
+*/
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 460px;
+  overflow-y: hidden;
+
+  background: #FFF;
+  color: #555;
+
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+
+}
+
+.main {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  bottom: @finger;
+}
+
+/*********************************************************
+* Canvases
+*/
+
+.canvases {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.canvas-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+}
+
+.canvas-container canvas {
+  /* Omit width to exploit automatic size adjustment wrt aspect ratio. */
+  /*width: 100%;*/
+  height: 100%;
+  position: relative;
+}
+
+/*********************************************************
+* Footer
+*/
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.tools {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  height: @finger;
+  background-color: @red;
+  border-top: 1px solid darken(@red, 8%);
+
+  > li {
+    float: left;
+    height: 100%;
+    width: @finger;
+    border-right: 1px solid darken(@red, 8%);
+
+    &.disabled {
+      opacity: 0.2;
+      > a:hover {
+        background-color: @red;
+      }
+    }
+
+    > a {
+      display: block;
+      height: 100%;
+      background-repeat: no-repeat;
+      &:hover {
+        background-color: lighten(@red, 5%);
+      }
+    }
+  }
+}
+
+// Buttons
+.photos a {
+  background-image: url('../img/camera.png');
+}
+.move a {
+  background-image: url('../img/overlay.png');
+}
+.export a {
+  background-image: url('../img/glasses.png');
+}
+
+// Form inputs
+fieldset {
+  display: block;
+  position: relative;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+.see-through {
+  position: absolute;
+  visibility: hidden;
+}
+.cover {
+  display: block;
+  height: 100%;
+  width: 100%;
+  display: table;
+  text-align: center;
+}
+.progress {
+  display: table-cell;
+  height: 100%;
+  width: 100%;
+  vertical-align: middle;
+
+  &:before,
+  &:after {
+    display: inline-block;
+    font-size: 5em;
+    width: 1.8em;
+    height: 1.8em;
+    line-height: 1.8;
+    border-radius: 1.8em;
+    text-align: center;
+
+    background: @lightgrey;
+    color: darken(@lightgrey, 20%);
+  }
+  // First image
+  &:before {
+    content: "1";
+    margin-right: 0.2em;
+  }
+  &.dropped-1:before {
+    background: @red;
+    color: lighten(@red, 20%);
+  }
+  // Second image
+  &:after {
+    content: "2";
+  }
+  &.dropped-2:after {
+    background: @blue;
+    color: lighten(@blue, 20%);
+  }
+}
+
+.instructions {
+  padding: 1em;
+  text-align: center;
+  line-height: 1.1;
+  background-color: @lightgrey;
+  border-top: 1px solid darken(@lightgrey, 10%);
+  color: darken(@lightgrey, 30%);
+}
