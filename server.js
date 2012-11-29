@@ -10,8 +10,11 @@ app.use(express.logger())
 var knoxClient;
 
 if(config.s3){
+
   knoxClient = knox.createClient(config.s3);
-  app.listen(8080);
+
+  app.listen(config.port);
+
   app.post('/save', function(req, res){
     var dataString = '';
 
