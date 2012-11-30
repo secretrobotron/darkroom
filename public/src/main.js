@@ -85,7 +85,9 @@
         fileInput.click();
       }
 
-      cover.addEventListener('click', coverClick, false);
+      if ( cover ) {
+        cover.addEventListener('click', coverClick, false);
+      }
 
       fileInput.addEventListener('change', function(e){
         readFunction(e.target.files[0]);
